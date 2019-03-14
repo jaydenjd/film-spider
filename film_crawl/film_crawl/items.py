@@ -11,19 +11,21 @@ from scrapy import Item, Field
 class MovieInfoItem(Item):
     collection = table = 'movie_info'
     movie_id = Field()
-    movie_name = Field()
-    movie_type = Field()
-    movie_region = Field()
-    movie_lang = Field()
-    movie_score = Field()
-    movie_release_time = Field()
-    movie_videourl = Field()
-    movie_dra = Field()
-    # movie_info = Field()
+    name = Field()
+    enm = Field()
+    type = Field()
+    region = Field()
+    lang = Field()
+    score = Field()
+    release_time = Field()
+    img = Field()
+    videourl = Field()
+    dra = Field()
+    info = Field()
 
 
 class MovieCommentsItem(Item):
-    collection = table = 'comments'
+    collection = table = 'movie_comments'
     movie_id = Field()
     comment_id = Field()
     content = Field()
