@@ -13,14 +13,12 @@ class MovieInfoSpider(scrapy.Spider):
 
     def __init__(self, film_id=None):
         self.film_id = film_id
-        # self.film_id = '410629'
         self.start_urls = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'.format(self.film_id)
 
     def start_requests(self):
-        ua: UserAgent()
+        ua = UserAgent()
         headers = {
-            "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 "
-                          "Safari/537.36"
+            "user-agent": ua
         }
         yield scrapy.Request(self.start_urls, callback=self.parse, headers=headers)
 

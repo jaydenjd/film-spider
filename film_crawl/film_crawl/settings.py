@@ -52,9 +52,10 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'film_crawl.middlewares.FilmCrawlDownloaderMiddleware': 543,
-#}
+
+DOWNLOADER_MIDDLEWARES = {
+   'film_crawl.middlewares.RandomUserAgentMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -66,7 +67,7 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'film_crawl.pipelines.MovieInfoPipeline': 300,
-   'film_crawl.pipelines.MongoPipeline': 301,
+   # 'film_crawl.pipelines.MongoPipeline': 301,
 
 }
 
