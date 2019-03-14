@@ -14,10 +14,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/film_comments.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+              <folding>
+                <element signature="e#24#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/pipelines.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/maoyan.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="76" selection-end-column="115" />
+            <state relative-caret-position="402">
+              <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
               </folding>
@@ -31,15 +52,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/film_admin/film/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="69" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/film_admin/film/admin.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film_admin/film/apps.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -48,25 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/film_admin/film/admin.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/var/pyenv/versions/3.6.7/envs/film_project/lib/python3.6/site-packages/twisted/internet/defer.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/film_admin/film/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10846">
-              <caret line="653" selection-start-line="653" selection-end-line="653" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/items.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="14" />
+            <state relative-caret-position="82">
+              <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -74,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+            <state relative-caret-position="204">
+              <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
             </state>
           </provider>
         </entry>
@@ -83,8 +86,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="94" column="8" selection-start-line="94" selection-end-line="94" selection-end-column="8" />
+            <state relative-caret-position="244">
+              <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/film_info.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-72">
+              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -150,6 +162,42 @@
             <path>
               <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="film_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="film" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="film" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_crawl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_crawl" type="462c0819:PsiDirectoryNode" />
+              <item name="film_crawl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="film_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="film_project" type="462c0819:PsiDirectoryNode" />
+              <item name="film_crawl" type="462c0819:PsiDirectoryNode" />
+              <item name="film_crawl" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -223,12 +271,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37906000" />
+    <option name="totallyTimeSpent" value="37926000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="963" extended-state="0" />
+    <frame x="-1" y="23" width="1680" height="963" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15140416" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15140416" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -242,7 +290,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24110219" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24799082" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -333,17 +381,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/film_info.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-72">
+          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/film_comments.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
+        <state relative-caret-position="162">
           <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding>
             <element signature="e#24#35#0" expanded="true" />
@@ -353,18 +398,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/pipelines.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-          <folding>
-            <element signature="e#193#204#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="595">
+          <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/spiders/maoyan.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="76" selection-end-column="115" />
+        <state relative-caret-position="402">
+          <caret line="35" column="38" lean-forward="true" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
           <folding>
             <element signature="e#24#39#0" expanded="true" />
           </folding>
@@ -372,9 +414,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/film_admin/film/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/film_admin/film/admin.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file:///usr/local/var/pyenv/versions/3.6.7/envs/film_project/lib/python3.6/site-packages/twisted/internet/defer.py">
@@ -393,36 +432,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="204">
+          <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/film_crawl/film_crawl/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="8" selection-start-line="94" selection-end-line="94" selection-end-column="8" />
+        <state relative-caret-position="244">
+          <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/film_admin/film/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="69" selection-start-line="18" selection-start-column="69" selection-end-line="18" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test.py" />
     <entry file="file://$PROJECT_DIR$/film_admin/film/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="16" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/film_admin/film/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/film_admin/film/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="39" column="22" selection-start-line="39" selection-start-column="22" selection-end-line="39" selection-end-column="22" />
         </state>
       </provider>
     </entry>
