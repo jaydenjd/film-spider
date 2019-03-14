@@ -76,9 +76,7 @@ class MaoyanSpider(Spider):
         comment = MovieCommentsItem()
         try:
             items = json.loads(response.text).get('cmts')
-            for item \
-
-                    in items:
+            for item in items:
                 comment['movie_id'] = item['movieId']
                 comment['comment_id'] = item['id']
                 comment['nickName'] = item['nickName']
@@ -90,7 +88,6 @@ class MaoyanSpider(Spider):
                 comment['content'] = item['content']
                 comment['start_time'] = item['startTime']
                 yield comment
-
 
         except Exception as e:
             logging.error(e)
