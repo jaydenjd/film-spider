@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-import json
-
-import pymongo as pymongo
+import logging
+import pymongo
 import pymysql
 
 from .items import MovieInfoItem, MovieCommentsItem
@@ -39,30 +34,15 @@ class MovieInfoPipeline():
         self.db.close()
 
     def process_item(self, item, spider):
-        # print(item[''])
-        data = dict(item)
-        keys = ', '.join(data.keys())
-        values = ', '.join(['%s'] * len(data))
-        sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
-        self.cursor.execute(sql, tuple(data.values()))
-        # sql = 'insert into {} ({}) values ({})'.format(item.table, keys, values)
-        # self.cursor.execute(sql, (data['movie_id'],
-        #                           pymysql.escape_string(data['movie_name']),
-        #                           pymysql.escape_string(data['movie_type']),
-        #                           pymysql.escape_string(data['movie_region']),
-        #                           pymysql.escape_string(data['movie_lang']),
-        #                           data['movie_score'],
-        #                           pymysql.escape_string(data['movie_release_time']),
-        #                           pymysql.escape_string(data['movie_videourl']),
-        #                           pymysql.escape_string(data['movie_dra']),
-        #                           data['movie_info'],
-        #                           )
-        #                     )
-        # self.cursor.execute(sql, tuple((1, 'dianying', 'act', 'us', 'english', 2.9, '2018-12-2', 'http://baidu.com', 'daha')))
-        # sql = sql.format(data['movie_id'],data['movie_name'],data['movie_type'],data['movie_region'],data['movie_lang'],data['movie_score'],
-        #                  data['movie_release_time'],data['movie_videourl'],str(data['movie_dra']), str(data['movie_info']))
-        # self.cursor.execute(sql)
-        self.db.commit()
+        try:
+            data = dict(item)
+            keys = ', '.join(data.keys())
+            values = ', '.join(['%s'] * len(data))
+            sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
+            self.cursor.execute(sql, tuple(data.values()))
+            self.db.commit()
+        except Exception as e:
+            logging.error(e)
 
         return item
 

@@ -16,40 +16,36 @@ class RequestInfoModel(models.Model):
 
 class MovieInfoModel(models.Model):
     movie_id = models.IntegerField(primary_key=True, verbose_name='电影id')
-    movie_name = models.CharField(max_length=50, verbose_name='电影名称')
-    movie_type = models.CharField(max_length=50, verbose_name='电影类型')
-    movie_region = models.CharField(max_length=50, verbose_name='电影地区')
-    movie_lang = models.CharField(max_length=20, verbose_name='电影语言')
-    movie_score = models.FloatField(verbose_name='电影评分')
-    movie_release_time = models.CharField(max_length=30, verbose_name='电影上映时间')
-    movie_videourl = models.CharField(max_length=100, verbose_name='电影宣传视频')
-    movie_dra = models.CharField(max_length=300, verbose_name='电影简介')
-    # movie_info = models.CharField(max_length=1000, verbose_name='电影信息')
-    # add_date = models.DateTimeField(auto_now_add=True, verbose_name="创建日期")
-    # mod_date = models.DateTimeField(auto_now=True, verbose_name="修改日期")
+    name = models.CharField(max_length=50, verbose_name='电影名称')
+    enm = models.CharField(max_length=50, verbose_name='电影英文名')
+    type = models.CharField(max_length=50, verbose_name='电影类型')
+    region = models.CharField(max_length=50, verbose_name='电影地区')
+    lang = models.CharField(max_length=20, verbose_name='电影语言')
+    score = models.FloatField(verbose_name='电影评分')
+    release_time = models.CharField(max_length=30, verbose_name='电影上映时间')
+    img = models.CharField(max_length=100, verbose_name='电影海报')
+    videourl = models.CharField(max_length=100, verbose_name='电影宣传视频')
+    dra = models.CharField(max_length=300, verbose_name='电影简介')
+    info = models.CharField(max_length=1000, verbose_name='电影信息')
 
     class Meta:
         db_table = 'movie_info'
         verbose_name = '电影基本信息表'
         verbose_name_plural = "电影基本信息表"
-    # movie_videourl = models.CharField(max_length=200, default='')
-    # movie_distributions = models.CharField(max_length=200, default='')
 
 
 class CommentsModel(models.Model):
-    # movie_id = models.ForeignKey(MovieInfoModel, on_delete=models.CASCADE)
-    comment_id = models.IntegerField(primary_key=True)  # 评论id
-    movie_id = models.IntegerField()  # 评论id
+    comment_id = models.IntegerField(primary_key=True, verbose_name='评论id')
+    movie = models.ForeignKey(MovieInfoModel, on_delete=models.CASCADE)
     nickName = models.CharField(max_length=50, verbose_name='昵称')
     gender = models.IntegerField(verbose_name='性别')
     cityName = models.CharField(max_length=10, verbose_name='所在城市')
     score = models.FloatField(verbose_name='评分')
     content = models.CharField(max_length=500, verbose_name='评论')
     start_time = models.CharField(max_length=30, verbose_name='评论时间')
-    # comments = models.CharField(max_length=1000, verbose_name='评论信息')
 
     class Meta:
-        db_table = 'comments'
+        db_table = 'movie_comments'
         verbose_name = '影评表'
         verbose_name_plural = "影评表"
 
