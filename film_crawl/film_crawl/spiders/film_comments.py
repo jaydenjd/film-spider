@@ -4,7 +4,6 @@ import logging
 import re
 import time
 import datetime
-# from fake_useragent import UserAgent
 import scrapy
 from ..items import MovieCommentsItem
 import requests
@@ -15,6 +14,7 @@ class MovieCommentsSpider(scrapy.Spider):
     allowed_domains = ['m.maoyan.com']
 
     def __init__(self, film_id):
+        film_id='247295'
         self.film_id = film_id
 
     # 获得上映时间
@@ -37,18 +37,12 @@ class MovieCommentsSpider(scrapy.Spider):
             print('[INFO]: start time is %s...' % start_time.replace('%20', ' '))
             for page in range(67):
                 print('<Page>: %s', page)
-                headers = {
-                    "user-agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 "
-                                  "Safari/537.36"
-
-                }
-
                 start_urls = 'http://m.maoyan.com/mmdb/comments/movie/{}.json?_v_=yes&offset={}&startTime={}' \
                     .format(self.film_id, page * 15, start_time)
-                yield scrapy.Request(start_urls, callback=self.parse, headers=headers)
+                yield scrapy.Request(start_urls, callback=self.parse)
             start_time = start_time.replace('%20', ' ')
             start_time = datetime.datetime.fromtimestamp(
-                time.mktime(time.strptime(start_time, '%Y-%m-%d %H:%M:%S'))) + datetime.timedelta(seconds=-24 * 3600)
+                time.mktime(time.strptime(start_time, '%Y-%m-%d %H:%M:%S'))) + datetime.timedelta(seconds=-1 * 3600)
             start_time = time.strftime('%Y-%m-%d %H:%M:%S',
                                        time.localtime(time.mktime(start_time.timetuple()))).replace(' ', '%20')
 
@@ -56,30 +50,18 @@ class MovieCommentsSpider(scrapy.Spider):
         comment = MovieCommentsItem()
         try:
             items = json.loads(response.text).get('cmts')
-            data = {}
             for item in items:
-                comment['movie_id'] = item['movieId'] if 'movieId' in item else ''
-                comment['comment_id'] = item['id']
-                comment['nickName'] = item['nickName']
-                # 可能没有性别的信息，'gender'为1代表男性，为2代表女性
-                comment['gender'] = item['gender'] if 'gender' in item else 0
+                comment['movie_id'] = item['movieId']  # 电影id
+                comment['comment_id'] = item['id']  # 影评id
+                comment['nickName'] = item['nickName']  # 昵称
+                # 可能没有性别的信息，'gender'为1代表男性，为2代表女性，如果不存在，则指定gender=0
+                comment['gender'] = str(item['gender']) if 'gender' in item else '0'  # 性别
                 # 可能没有所在城市的信息
-                comment['cityName'] = item['cityName'] if 'cityName' in item else ''
-                comment['score'] = float(item['score'])
-                comment['content'] = item['content']
-                comment['start_time'] = item['startTime']
-                # 用户信息
-                # comment['comments'] = {
-                #     'movie_id': item['movieId'],
-                #     'comment_id': item['id'],
-                #     'nickName': item['nickName'],
-                #     'gender': item['gender'] if 'gender' in item else '',
-                #     'cityName': item['cityName'] if 'cityName' in item else '',
-                #     'score': item['score'],
-                #     'content': item['content'],
-                #     'start_time': item['startTime'],
-                # }
-
+                comment['cityName'] = item['cityName'] if 'cityName' in item else 'unknown'  # 所在城市
+                comment['score'] = float(item['score'])  # 评分
+                comment['content'] = item['content']  # 评论内容
+                comment['date'] = item['startTime'].split(' ')[0]  # 评论时间
+                comment['time'] = item['startTime'].split(' ')[1]  # 评论时间
                 yield comment
         except Exception as e:
             logging.error(e)

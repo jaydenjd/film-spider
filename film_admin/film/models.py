@@ -4,9 +4,11 @@ from django.db import models
 
 
 class RequestInfoModel(models.Model):
-    movie_id = models.CharField(max_length=20, primary_key=True)
-    movie_name = models.CharField(max_length=200, verbose_name='电影名称')
+    movie_id = models.IntegerField(primary_key=True, verbose_name='电影id')
+    movie_name = models.CharField(max_length=50, verbose_name='电影名称')
     request_date = models.DateTimeField('date published')
+    region = models.CharField(verbose_name='地区',max_length=10,choices=(('china','国内'),('foreign','国外')),default='china')
+
 
     class Meta:
         db_table = 'request_info'
@@ -38,11 +40,13 @@ class CommentsModel(models.Model):
     comment_id = models.IntegerField(primary_key=True, verbose_name='评论id')
     movie = models.ForeignKey(MovieInfoModel, on_delete=models.CASCADE)
     nickName = models.CharField(max_length=50, verbose_name='昵称')
-    gender = models.IntegerField(verbose_name='性别')
+    gender = models.CharField(max_length=10, verbose_name='性别')
     cityName = models.CharField(max_length=10, verbose_name='所在城市')
     score = models.FloatField(verbose_name='评分')
     content = models.CharField(max_length=500, verbose_name='评论')
-    start_time = models.CharField(max_length=30, verbose_name='评论时间')
+    date = models.CharField(max_length=30, verbose_name='评论日期')
+    time = models.CharField(max_length=30, verbose_name='评论时间')
+    # start_time = models.CharField(max_length=30, verbose_name='评论时间')
 
     class Meta:
         db_table = 'movie_comments'
