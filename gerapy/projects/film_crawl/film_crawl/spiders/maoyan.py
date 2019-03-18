@@ -42,10 +42,6 @@ class MaoyanSpider(Spider):
         return result
 
     def start_requests(self):
-        # for s in self.exc_sql():
-        #     film_id = str(s[0])
-        #     movie_url = self.movie_url.format(film_id)
-        #     yield Request(movie_url, callback=self.parse_movie)
         movie_url = self.movie_url.format(self.film_id)
         yield Request(movie_url, callback=self.parse_movie)
 
