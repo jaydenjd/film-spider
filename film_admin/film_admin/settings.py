@@ -111,13 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 # TIME_ZONE = 'UTC'
+# 将时间调成上海时间
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# 将日期时间与time_zone对应起来
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

@@ -13,7 +13,7 @@ class RequestInfoModelAdmin(admin.ModelAdmin):
     fields = ['movie_id', 'movie_name', 'region','request_date']
     list_display = ('movie_id', 'movie_name', 'region', 'request_date')
     search_fields = ['movie_name', 'movie_id']
-    list_filter = ['movie_id']
+    list_filter = ['region']
 
 
 class MovieInfoModelAdmin(admin.ModelAdmin):

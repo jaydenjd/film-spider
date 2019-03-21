@@ -19,10 +19,11 @@ class MaoyanSpider(Spider):
 
     def __init__(self, *args, **kwargs):
         super(MaoyanSpider, self).__init__(*args, **kwargs)
-        for f_id in self.exc_sql():
-            film_id = str(f_id[0])
+        # for f_id in self.exc_sql():
+        #     film_id = str(f_id[0])
         # film_id = '410629'
-            self.film_id = film_id
+        film_id = self.exc_sql()
+        self.film_id = str(film_id[0])
         self.movie_url = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'
         self.comments_url = 'http://m.maoyan.com/mmdb/comments/movie/{film_id}.json?_v_=yes&' \
                             'offset={offset}&startTime={start_time}'
@@ -37,7 +38,8 @@ class MaoyanSpider(Spider):
         cursor = db.cursor()
         query_sql = "SELECT movie_id FROM film_spider.request_info ORDER BY  request_date DESC LIMIT 0,1"
         cursor.execute(query_sql)
-        result = cursor.fetchall()
+        # result = cursor.fetchall()
+        result = cursor.fetchone()
         db.close()
         return result
 
@@ -83,7 +85,7 @@ class MaoyanSpider(Spider):
                     comments_url = self.comments_url.format(film_id=self.film_id, offset=page * 15,
                                                             start_time=start_time)
                     # 构建影评请求并返回影评请求结果，指定回调参数为影评解析函数
-                    yield Request(comments_url, callback=self.parse_comments)
+                    yield Request(comments_url, callback=self.parse_comments, meta={'source_url': comments_url})
                 # 通过改变start_time来获取更多影评数据
                 # TODO start_time如何构建
                 start_time = start_time.replace('%20', ' ')
@@ -112,6 +114,7 @@ class MaoyanSpider(Spider):
         comment = MovieCommentsItem()
         try:
             items = json.loads(response.text).get('cmts')
+            source_url = response.meta['source_url']
             for item in items:
                 comment['movie_id'] = item['movieId']  # 电影id
                 comment['comment_id'] = item['id']  # 影评id
@@ -124,6 +127,7 @@ class MaoyanSpider(Spider):
                 comment['content'] = item['content']  # 评论内容
                 comment['date'] = item['startTime'].split(' ')[0]  # 评论时间
                 comment['time'] = item['startTime'].split(' ')[1]  # 评论时间
+                comment['source_url'] = source_url
                 yield comment
 
         except Exception as e:

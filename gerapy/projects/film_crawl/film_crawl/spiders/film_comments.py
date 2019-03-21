@@ -36,7 +36,6 @@ class MovieCommentsSpider(scrapy.Spider):
         while start_time.split(' ')[0] > end_time:
             print('[INFO]: start time is %s...' % start_time.replace('%20', ' '))
             for page in range(67):
-                print('<Page>: %s', page)
                 start_urls = 'http://m.maoyan.com/mmdb/comments/movie/{}.json?_v_=yes&offset={}&startTime={}' \
                     .format(self.film_id, page * 15, start_time)
                 yield scrapy.Request(start_urls, callback=self.parse)

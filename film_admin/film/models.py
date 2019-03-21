@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # import mongoengine
 
 
@@ -7,8 +8,8 @@ class RequestInfoModel(models.Model):
     movie_id = models.IntegerField(primary_key=True, verbose_name='电影id')
     movie_name = models.CharField(max_length=50, verbose_name='电影名称')
     request_date = models.DateTimeField('date published')
-    region = models.CharField(verbose_name='地区',max_length=10,choices=(('china','国内'),('foreign','国外')),default='china')
-
+    region = models.CharField(verbose_name='地区', max_length=10, choices=(('china', '国内'), ('foreign', '国外')),
+                              default='china')
 
     class Meta:
         db_table = 'request_info'
@@ -30,6 +31,9 @@ class MovieInfoModel(models.Model):
     dra = models.CharField(max_length=300, verbose_name='电影简介')
     info = models.CharField(max_length=1000, verbose_name='电影信息')
 
+    def __str__(self):
+        return (self.name, self.enm).__str__()  # python3写法
+
     class Meta:
         db_table = 'movie_info'
         verbose_name = '电影基本信息表'
@@ -43,9 +47,11 @@ class CommentsModel(models.Model):
     gender = models.CharField(max_length=10, verbose_name='性别')
     cityName = models.CharField(max_length=10, verbose_name='所在城市')
     score = models.FloatField(verbose_name='评分')
-    content = models.CharField(max_length=500, verbose_name='评论')
+    content = models.CharField(max_length=500, verbose_name='评论内容')
     date = models.CharField(max_length=30, verbose_name='评论日期')
     time = models.CharField(max_length=30, verbose_name='评论时间')
+    source_url = models.CharField(max_length=200, verbose_name='数据来源')
+
     # start_time = models.CharField(max_length=30, verbose_name='评论时间')
 
     class Meta:
