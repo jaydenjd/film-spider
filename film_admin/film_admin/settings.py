@@ -25,8 +25,7 @@ SECRET_KEY = '1*8563smn1mnzggzf1w+%okh2ls=$)$t=re3&p#z6vj24)+fo#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -78,7 +77,6 @@ WSGI_APPLICATION = 'film_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME': 'film_spider',
         'USER': 'root',
         'HOST': 'localhost',
@@ -112,15 +110,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+# 将时间调成上海时间
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
-USE_TZ = True
+# 将日期时间与time_zone对应起来
+USE_TZ = False
 
-
+# 将时间精确显示到秒
+DATETIME_FORMAT = 'Y/m/d H:i:s'
+# 精确显示毫秒，以便在爬取热门电影后，以时间排序时更为准确
+DATETIME_INPUT_FORMATS = '%Y/%m/%d %H:%M:%S.%f'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
