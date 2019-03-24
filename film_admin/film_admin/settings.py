@@ -116,12 +116,15 @@ TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 # 将日期时间与time_zone对应起来
 USE_TZ = False
 
-
+# 将时间精确显示到秒
+DATETIME_FORMAT = 'Y/m/d H:i:s'
+# 精确显示毫秒，以便在爬取热门电影后，以时间排序时更为准确
+DATETIME_INPUT_FORMATS = '%Y/%m/%d %H:%M:%S.%f'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 

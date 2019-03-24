@@ -42,3 +42,6 @@ class RequestInfoItem(Item):
     collection = table = 'request_info'
     movie_id = Field()
     movie_name = Field()
+    request_date = Field()
+    region = Field()
+    create_date = Field()

@@ -1,5 +1,8 @@
-from django.db import models
+import datetime
 
+import django.utils.timezone as timezone
+
+from django.db import models
 
 # import mongoengine
 
@@ -7,9 +10,10 @@ from django.db import models
 class RequestInfoModel(models.Model):
     movie_id = models.IntegerField(primary_key=True, verbose_name='电影id')
     movie_name = models.CharField(max_length=50, verbose_name='电影名称')
-    request_date = models.DateTimeField('date published')
     region = models.CharField(verbose_name='地区', max_length=10, choices=(('china', '国内'), ('foreign', '国外')),
                               default='china')
+    request_date = models.DateTimeField(verbose_name='请求时间', default=timezone.now)
+    create_date = models.DateTimeField(verbose_name='创建时间', auto_now=True)
 
     class Meta:
         db_table = 'request_info'

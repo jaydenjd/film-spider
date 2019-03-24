@@ -5,7 +5,7 @@ import pymongo
 import pymysql
 from scrapy.exceptions import DropItem
 
-from .items import MovieInfoItem, MovieCommentsItem
+from .items import MovieInfoItem, MovieCommentsItem, RequestInfoItem
 
 
 class TextPipeline(object):
@@ -68,12 +68,46 @@ class MysqlPipeline(object):
 
     def process_item(self, item, spider):
         try:
-            data = dict(item)
-            keys = ', '.join(data.keys())
-            values = ', '.join(['%s'] * len(data))
-            sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
-            self.cursor.execute(sql, tuple(data.values()))
-            self.db.commit()
+
+            if isinstance(item, MovieInfoItem):
+                data = dict(item)
+                # 查询信息表的所有movie_id字段
+                select_sql = 'SELECT movie_id FROM film_spider.movie_info '
+                self.cursor.execute(select_sql)
+                result = self.cursor.fetchall()
+                movie_id_list = []
+                # 将所有的movie_id字段放进一个列表里
+                for movie_id in result:
+                    movie_id_list.append(movie_id[0])
+                # 通过movie_id判断电影信息表中是否已经存在该电影，如果存在，则只更新电影评分，不存在，则插入此信息
+                if data['movie_id'] in movie_id_list:
+                    update_sql = 'UPDATE film_spider.movie_info SET score={score} WHERE movie_id={movie_id}'.format(
+                        score=data['score'], movie_id=data['movie_id'])
+                    self.cursor.execute(update_sql)
+                    self.db.commit()
+                else:
+                    keys = ', '.join(data.keys())
+                    values = ', '.join(['%s'] * len(data))
+                    sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
+                    self.cursor.execute(sql, tuple(data.values()))
+                    self.db.commit()
+
+            if isinstance(item, MovieCommentsItem):
+                data = dict(item)
+                keys = ', '.join(data.keys())
+                values = ', '.join(['%s'] * len(data))
+                sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
+                self.cursor.execute(sql, tuple(data.values()))
+                self.db.commit()
+
+            if isinstance(item, RequestInfoItem):
+                data = dict(item)
+                keys = ', '.join(data.keys())
+                values = ', '.join(['%s'] * (len(data)))
+                sql = 'insert into %s (%s) values (%s)' % (item.table, keys, values)
+                self.cursor.execute(sql, tuple(data.values()))
+                self.db.commit()
+
         except Exception as e:
             logging.error(e)
 
@@ -106,12 +140,3 @@ class MongoPipeline(object):
             self.db[item.collection].update({'movie_id': item.get('movie_id')}, {'$set': item}, True)
         if isinstance(item, MovieCommentsItem):
             self.db[item.collection].update({'comment_id': item.get('comment_id')}, {'$set': item}, True)
-
-
-
-
-
-
-
-
-
