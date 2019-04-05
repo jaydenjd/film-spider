@@ -1,10 +1,8 @@
-# Automatically created by: scrapyd-deploy
-
+# Automatically created by: gerapy
 from setuptools import setup, find_packages
-
 setup(
-    name         = 'project',
-    version      = '1.0',
-    packages     = find_packages(),
-    entry_points = {'scrapy': ['settings = film_crawl.settings']},
+    name='film_crawl',
+    version='1.0',
+    packages=find_packages(),
+    entry_points={'scrapy':['settings=film_crawl.settings']},
 )

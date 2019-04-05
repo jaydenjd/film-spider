@@ -103,6 +103,7 @@ MONGO_DB = 'film_spider'
 
 MYSQL_HOST = 'localhost'
 MYSQL_DATABASE = 'film_spider'
+# MYSQL_DATABASE = 'spider_test'
 MYSQL_USER = 'root'
 MYSQL_PASSWORD = 'root'
 MYSQL_PORT = 3306

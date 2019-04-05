@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 import json
 import logging
@@ -77,7 +76,7 @@ class MaoyanCrawlOneSpider(Spider):
                 # logging.info('start time is %s...' % start_time.replace('%20', ' '))
                 # 每一个特定的start_time，只有offset=66*15=990条可抓取评论数，到了offset=1050后，返回数据为空
                 for page in range(67):
-                    logging.info('上映时间' + end_time)
+                    # logging.info('上映时间' + end_time)
                     # 通过传入film_id,offset,start_time构建影评API
                     comments_url = self.comments_url.format(film_id=film_id, offset=page * 15,
                                                             start_time=start_time)
