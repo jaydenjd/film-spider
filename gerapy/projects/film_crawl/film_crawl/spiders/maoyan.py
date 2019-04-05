@@ -5,28 +5,28 @@
 # import re
 # import time
 # import requests
-# from scrapy import Request, Spider
+from scrapy import Request, Spider
 #
 # from ..settings import MYSQL_HOST, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, MYSQL_PORT
 # from ..items import MovieInfoItem, MovieCommentsItem
-#
-# import pymysql
-#
-#
-# class MaoyanSpider(Spider):
-#     name = 'maoyan'
-#     allowed_domains = ['maoyan.com']
-#
-#     def __init__(self, *args, **kwargs):
-#         super(MaoyanSpider, self).__init__(*args, **kwargs)
-#         # for f_id in self.exc_sql():
-#         #     film_id = str(f_id[0])
-#         # film_id = '410629'
-#         film_id = self.exc_sql()
-#         self.film_id = str(film_id[0])
-#         self.movie_url = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'
-#         self.comments_url = 'http://m.maoyan.com/mmdb/comments/movie/{film_id}.json?_v_=yes&' \
-#                             'offset={offset}&startTime={start_time}'
+
+import pymysql
+
+
+class MaoyanSpider(Spider):
+    name = 'maoyan'
+    allowed_domains = ['maoyan.com']
+
+    def __init__(self, *args, **kwargs):
+        super(MaoyanSpider, self).__init__(*args, **kwargs)
+        # for f_id in self.exc_sql():
+        #     film_id = str(f_id[0])
+        # film_id = '410629'
+        film_id = self.exc_sql()
+        self.film_id = str(film_id[0])
+        self.movie_url = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'
+        self.comments_url = 'http://m.maoyan.com/mmdb/comments/movie/{film_id}.json?_v_=yes&' \
+                            'offset={offset}&startTime={start_time}'
 #
 #     def exc_sql(self):
 #         host = MYSQL_HOST

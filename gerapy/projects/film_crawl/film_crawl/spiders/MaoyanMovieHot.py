@@ -10,7 +10,7 @@ import sys
 sys.path.insert(0, '..')
 
 # from ..items import MaoyanRequestItem
-from ..items import RequestInfoItem
+from ..items import MaoyanRequestItem
 
 
 class MaoyanmoviehotSpider(scrapy.Spider):
@@ -40,7 +40,7 @@ class MaoyanmoviehotSpider(scrapy.Spider):
         # 电影基本信息解析，并构建影评请求
 
     def parse_movie(self, response):
-        req = RequestInfoItem()
+        req = MaoyanRequestItem()
         # 初始化获得本地时间
         req_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         try:

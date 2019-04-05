@@ -32,7 +32,7 @@ class IndexView(generic.ListView):
         '''return the last five published questions'''
         # return Question.objects.order_by('-pub_date')[:5]
         # return MaoyanMovieInfo.objects.order_by('-movie_id')
-        return MovieInfoModel.objects.order_by('-movie_id')
+        return MaoyanMovieInfo.objects.order_by('-movie_id')
 
 # class DetailView(generic.DetailView):
 #     model = MovieInfoModel
@@ -47,7 +47,7 @@ class IndexView(generic.ListView):
 class ResultsView(generic.DetailView):
 
     # model = MaoyanMovieInfo
-    model = MovieInfoModel
+    model = MaoyanMovieInfo
     template_name = 'film/result.html'
     def __init__(self, pk):
         self.pk = pk
