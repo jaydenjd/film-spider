@@ -72,7 +72,7 @@ class MysqlPipeline(object):
             if isinstance(item, MaoyanMovieInfoItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
-                select_sql = 'SELECT movie_id FROM film_spider.maoyan_movie_info '
+                select_sql = 'SELECT movie_id FROM maoyan_movie_info '
                 self.cursor.execute(select_sql)
                 result = self.cursor.fetchall()
                 movie_id_list = []
@@ -81,7 +81,7 @@ class MysqlPipeline(object):
                     movie_id_list.append(movie_id[0])
                 # 通过movie_id判断电影信息表中是否已经存在该电影，如果存在，则只更新电影评分，不存在，则插入此信息
                 if data['movie_id'] in movie_id_list:
-                    update_sql = 'UPDATE film_spider.maoyan_movie_info SET score={score} WHERE movie_id={movie_id}'.format(
+                    update_sql = 'UPDATE maoyan_movie_info SET score={score} WHERE movie_id={movie_id}'.format(
                         score=data['score'], movie_id=data['movie_id'])
                     self.cursor.execute(update_sql)
                     self.db.commit()
@@ -103,19 +103,18 @@ class MysqlPipeline(object):
             if isinstance(item, MaoyanRequestItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
-                select_sql = 'SELECT movie_id FROM film_spider.maoyan_movie_request '
+                select_sql = 'SELECT movie_id FROM maoyan_movie_request '
                 self.cursor.execute(select_sql)
                 result = self.cursor.fetchall()
-                movie_id_list = []
                 # 将所有的movie_id字段放进一个列表里
-                for movie_id in result:
-                    movie_id_list.append(movie_id[0])
-                # 通过movie_id判断电影信息表中是否已经存在该电影，如果存在，则只更新电影评分，不存在，则插入此信息
+                movie_id_list = [movie_id[0] for movie_id in result]
+                # 通过movie_id判断爬虫请求表是否已经存在该电影，如果存在，则只更新电影名字
                 if data['movie_id'] in movie_id_list:
-                    update_sql = 'UPDATE film_spider.maoyan_movie_request SET movie_name={movie_name} WHERE movie_id={movie_id}'.format(
+                    update_sql = 'UPDATE douban_movie_request SET movie_name={movie_name} WHERE movie_id={movie_id}'.format(
                         movie_name=data['movie_name'], movie_id=data['movie_id'])
                     self.cursor.execute(update_sql)
                     self.db.commit()
+                    pass
                 else:
                     keys = ', '.join(data.keys())
                     values = ', '.join(['%s'] * len(data))
@@ -123,11 +122,10 @@ class MysqlPipeline(object):
                     self.cursor.execute(sql, tuple(data.values()))
                     self.db.commit()
 
-
             if isinstance(item, DoubanMovieInfoItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
-                select_sql = 'SELECT movie_id FROM film_spider.douban_movie_info '
+                select_sql = 'SELECT movie_id FROM douban_movie_info '
                 self.cursor.execute(select_sql)
                 result = self.cursor.fetchall()
                 movie_id_list = []
@@ -136,7 +134,7 @@ class MysqlPipeline(object):
                     movie_id_list.append(movie_id[0])
                 # 通过movie_id判断电影信息表中是否已经存在该电影，如果存在，则只更新电影评分，不存在，则插入此信息
                 if data['movie_id'] in movie_id_list:
-                    update_sql = 'UPDATE film_spider.douban_movie_info SET score={score} WHERE movie_id={movie_id}'.format(
+                    update_sql = 'UPDATE douban_movie_info SET score={score} WHERE movie_id={movie_id}'.format(
                         score=data['score'], movie_id=data['movie_id'])
                     self.cursor.execute(update_sql)
                     self.db.commit()
@@ -158,16 +156,14 @@ class MysqlPipeline(object):
             if isinstance(item, DoubanRequestItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
-                select_sql = 'SELECT movie_id FROM film_spider.douban_movie_request '
+                select_sql = 'SELECT movie_id FROM douban_movie_request '
                 self.cursor.execute(select_sql)
                 result = self.cursor.fetchall()
-                movie_id_list = []
                 # 将所有的movie_id字段放进一个列表里
-                for movie_id in result:
-                    movie_id_list.append(movie_id[0])
-                # 通过movie_id判断电影信息表中是否已经存在该电影，如果存在，则只更新电影评分，不存在，则插入此信息
+                movie_id_list = [movie_id[0] for movie_id in result]
+                # 通过movie_id判断爬虫请求表是否已经存在该电影，如果存在，则只更新电影名字
                 if data['movie_id'] in movie_id_list:
-                    update_sql = 'UPDATE film_spider.douban_movie_request SET movie_name={movie_name} WHERE movie_id={movie_id}'.format(
+                    update_sql = 'UPDATE douban_movie_request SET movie_name={movie_name} WHERE movie_id={movie_id}'.format(
                         movie_name=data['movie_name'], movie_id=data['movie_id'])
                     self.cursor.execute(update_sql)
                     self.db.commit()

@@ -22,5 +22,8 @@ def exc_sql():
     db.close()
     return result
 if __name__ == '__main__':
-    for i in exc_sql():
-        print(i[0])
+    result = exc_sql()
+    movie_id_list = [movie_id[0] for movie_id in result]
+    # for i in exc_sql():
+    #     print(i[0])
+    print(movie_id_list)

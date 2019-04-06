@@ -25,8 +25,6 @@ class DoubanmoviehotSpider(scrapy.Spider):
 
     def parse_movie(self, response):
         req = DoubanRequestItem()
-        # 初始化获得本地时间
-        # req_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         try:
             # 将返回数据loads成字典
             subjects = json.loads(response.text).get('subjects')
