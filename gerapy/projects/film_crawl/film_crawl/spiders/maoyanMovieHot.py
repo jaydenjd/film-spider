@@ -9,12 +9,11 @@ from scrapy import Request
 import sys
 sys.path.insert(0, '..')
 
-# from ..items import MaoyanRequestItem
 from ..items import MaoyanRequestItem
 
 
 class MaoyanmoviehotSpider(scrapy.Spider):
-    name = 'MaoyanMovieHot'
+    name = 'maoyanMovieHot'
     allowed_domains = ['maoyan.com']
     # start_urls = ['http://maoyan.com/']
 

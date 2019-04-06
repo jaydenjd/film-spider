@@ -10,12 +10,12 @@ from ..settings import MYSQL_HOST, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, M
 from ..items import MaoyanMovieInfoItem, MaoyanMovieCommentsItem
 import pymysql
 
-class MaoyanmovieoneSpider(Spider):
-    name = 'MaoyanMovieOne'
+class MaoyanmovieallSpider(Spider):
+    name = 'maoyanMovieAll'
     allowed_domains = ['maoyan.com']
 
     def __init__(self, *args, **kwargs):
-        super(MaoyanmovieoneSpider, self).__init__(*args, **kwargs)
+        super(MaoyanmovieallSpider, self).__init__(*args, **kwargs)
         self.movie_url = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'
         self.comments_url = 'http://m.maoyan.com/mmdb/comments/movie/{film_id}.json?_v_=yes&' \
                             'offset={offset}&startTime={start_time}'
@@ -28,18 +28,18 @@ class MaoyanmovieoneSpider(Spider):
         port = MYSQL_PORT
         db = pymysql.connect(host=host, user=user, password=password, db=database, port=port, charset='utf8mb4')
         cursor = db.cursor()
-        query_sql = "SELECT movie_id FROM {}.maoyan_movie_request ORDER BY  request_date DESC LIMIT 0,1".format(database)
+        query_sql = "SELECT movie_id FROM {}.maoyan_movie_request ORDER BY request_date DESC, movie_id".format(database)
         cursor.execute(query_sql)
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         db.close()
         return result
 
     def start_requests(self):
         result = self.exc_sql()
-        film_id = str(result[0])
-        movie_url = self.movie_url.format(film_id)
-        # 通过meta将film_id传过去
-        yield Request(movie_url, callback=self.parse_movie, meta={'film_id': str(film_id)})
+        for film in result:
+            film_id = str(film[0])
+            movie_url = self.movie_url.format(film_id)
+            yield Request(movie_url, callback=self.parse_movie, meta={'film_id': str(film_id)})
 
     # 电影基本信息解析，并构建影评请求
     def parse_movie(self, response):
@@ -48,8 +48,8 @@ class MaoyanmovieoneSpider(Spider):
         try:
             # 将返回数据loads成字典
             items = json.loads(response.text).get('data').get('movie')
-            # info['uuid'] = str(int(uuid.uuid3(uuid.NAMESPACE_DNS, str(items['nm'])+str(items['rt']))))[0:12]
-            info['uuid'] = str(uuid.uuid1())
+            info['uuid'] = str(int(uuid.uuid3(uuid.NAMESPACE_DNS, str(items['nm'])+str(items['rt']))))[0:9]
+            # info['uuid'] = str(uuid.uuid1())
             info['movie_id'] = items['id']  # 猫眼电影Id
             info['name'] = items['nm']  # 电影名字
             info['enm'] = items['enm']  # 电影英文名
@@ -60,16 +60,13 @@ class MaoyanmovieoneSpider(Spider):
             info['pubdate'] = items['rt']  # 电影上映时间
             info['data_from'] = '猫眼'
             info['score'] = float(items['sc'])  # 电影评分
+            info['directors'] = ''
+            info['actors'] = ''
+            info['writers'] = ''
             # 原url是无效链接，要去到原url中的'/w.h'字符串才是有效链接，并且将Http协议改成https安全协议
             info['img'] = items['img'].replace('http', 'https').replace('/w.h', '')  # 电影海报
             info['videourl'] = items['videourl']  # 电影宣传视频链接
             info['dra'] = items['dra']
-            # 电影简介
-            # info['info'] = json.dumps(
-            #     {'movie_id': items['id'], 'name': items['nm'], 'enm': items['enm'], 'type': items['cat'],
-            #      'region': items['src'], 'lang': items['oriLang'], 'score': float(items['sc']),
-            #      'release_time': items['rt'], 'img': items['img'].replace('http', 'https').replace('/w.h', ''),
-            #      'videourl': items['videourl']})
             yield info
             # 影评接口中的start_time是评论时间，在接口中需要在日期后面、小时前面加'%20'才是有效的
             start_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())).replace(' ', '%20')
@@ -110,8 +107,8 @@ class MaoyanmovieoneSpider(Spider):
             name = response.meta['name']
             pubdate = response.meta['pubdate']
             for item in items:
-                comment['uuid'] = str(uuid.uuid1())
-                # comment['uuid'] = str(int(uuid.uuid3(uuid.NAMESPACE_DNS, str(name) + str(pubdate))))[0:12]
+                # comment['uuid'] = str(uuid.uuid1())
+                comment['uuid'] = str(int(uuid.uuid3(uuid.NAMESPACE_DNS, str(name) + str(pubdate))))[0:9]
                 comment['movie_id'] = item['movieId']  # 电影id
                 comment['comment_id'] = item['id']  # 影评id
                 comment['nickName'] = item['nickName']  # 昵称

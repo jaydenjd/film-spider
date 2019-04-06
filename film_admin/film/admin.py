@@ -6,9 +6,13 @@ from django.contrib import admin
 # Register your models here.
 
 from django.contrib import admin
-# from .models import MaoyanRequestInfo, MaoyanMovieInfo
+from .models import MaoyanMovieRequest, DoubanMovieRequest
 
 
+class Meta:
+    db_table = 'maoyan_movie_request'
+    verbose_name = '猫眼爬虫请求表'
+    verbose_name_plural = "猫眼爬虫请求表"
 class MaoyanRequestAdmin(admin.ModelAdmin):
     list_display = ('movie_id', 'movie_name', 'region', 'request_date', 'create_date')
     search_fields = ['movie_name', 'movie_id']
@@ -31,5 +35,5 @@ class MovieInfoModelAdmin(admin.ModelAdmin):
 
 
 admin.site.site_header = "电影爬虫后台"
-# admin.site.register(MaoyanRequestInfo, MaoyanRequestAdmin)
-# admin.site.register(DoubanRequestInfo, DoubanRequestAdmin)
+admin.site.register(MaoyanMovieRequest, MaoyanRequestAdmin)
+admin.site.register(DoubanMovieRequest, DoubanRequestAdmin)
