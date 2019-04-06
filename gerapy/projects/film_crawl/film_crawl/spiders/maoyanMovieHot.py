@@ -7,7 +7,6 @@ import requests
 import scrapy
 from scrapy import Request
 import sys
-sys.path.insert(0, '..')
 
 from ..items import MaoyanRequestItem
 

@@ -5,7 +5,6 @@ import json
 import logging
 import time
 import uuid
-
 from scrapy import Request, Spider
 from ..settings import MYSQL_HOST, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, MYSQL_PORT
 from ..items import DoubanMovieInfoItem, DoubanMovieCommentsItem
