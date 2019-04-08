@@ -92,7 +92,7 @@ class MysqlPipeline(object):
                     self.cursor.execute(sql, tuple(data.values()))
                     self.db.commit()
 
-            if isinstance(item, MaoyanMovieCommentsItem):
+            elif isinstance(item, MaoyanMovieCommentsItem):
                 data = dict(item)
                 keys = ', '.join(data.keys())
                 values = ', '.join(['%s'] * len(data))
@@ -100,7 +100,7 @@ class MysqlPipeline(object):
                 self.cursor.execute(sql, tuple(data.values()))
                 self.db.commit()
 
-            if isinstance(item, MaoyanRequestItem):
+            elif isinstance(item, MaoyanRequestItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
                 select_sql = 'SELECT movie_id FROM maoyan_movie_request '
@@ -122,7 +122,7 @@ class MysqlPipeline(object):
                     self.cursor.execute(sql, tuple(data.values()))
                     self.db.commit()
 
-            if isinstance(item, DoubanMovieInfoItem):
+            elif isinstance(item, DoubanMovieInfoItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
                 select_sql = 'SELECT movie_id FROM douban_movie_info '
@@ -145,7 +145,7 @@ class MysqlPipeline(object):
                     self.cursor.execute(sql, tuple(data.values()))
                     self.db.commit()
 
-            if isinstance(item, DoubanMovieCommentsItem):
+            elif isinstance(item, DoubanMovieCommentsItem):
                 data = dict(item)
                 keys = ', '.join(data.keys())
                 values = ', '.join(['%s'] * len(data))
@@ -153,7 +153,7 @@ class MysqlPipeline(object):
                 self.cursor.execute(sql, tuple(data.values()))
                 self.db.commit()
 
-            if isinstance(item, DoubanRequestItem):
+            elif isinstance(item, DoubanRequestItem):
                 data = dict(item)
                 # 查询信息表的所有movie_id字段
                 select_sql = 'SELECT movie_id FROM douban_movie_request '

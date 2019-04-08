@@ -35,7 +35,7 @@ class Analysis(object):
 
     # 评分柱状图
     def score_bar(self):
-        query_sql = "SELECT score,COUNT(score) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY score order by score ".format(self.movie_id)
+        query_sql = "SELECT score,COUNT(score) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY score order by score ".format(self.movie_id)
         data_list = self.exc_sql(query_sql)
         x = [i[0] for i in data_list]
         y = [i[1] for i in data_list]
@@ -43,11 +43,12 @@ class Analysis(object):
         bar.add("数据来源：" + '猫眼电影', x, y, type="effectScatter", border_color="#ffffff", symbol_size=2,
                 is_label_show=True, label_text_color="#0000FF", label_pos="inside", symbol_color="yellow",
                 bar_normal_color="#006edd", bar_emphasis_color="#0000ff")
-        bar.render('myecharts/score_bar.html')
+        bar.render('myecharts/score_bar.png')
+        # bar.render('myecharts/score_bar.html')
 
     # 评分饼图
     def score_pie(self):
-        query_sql = "SELECT score,COUNT(score) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY score".format(self.movie_id)
+        query_sql = "SELECT score,COUNT(score) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY score".format(self.movie_id)
         data_list = self.exc_sql(query_sql)
         attr = []
         value = []
@@ -60,9 +61,10 @@ class Analysis(object):
         # pie.add("蒸发量", columns, data2, center=[75, 50], is_legend_show=False, is_label_show=True)
         pie.render('myecharts/score_pie.html')
 
+
     # 评分柱状图
     def gender_bar(self):
-        query_sql = "SELECT gender,COUNT(gender) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY gender ".format(
+        query_sql = "SELECT gender,COUNT(gender) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY gender ".format(
             self.movie_id)
         data_list = self.exc_sql(query_sql)
         x = [i[0] for i in data_list]
@@ -75,7 +77,7 @@ class Analysis(object):
 
     # 性别饼图
     def gender_pie(self):
-        query_sql = "SELECT gender,COUNT(gender) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY gender".format(self.movie_id)
+        query_sql = "SELECT gender,COUNT(gender) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY gender".format(self.movie_id)
         data_list = self.exc_sql(query_sql)
         attr = []
         value = []
@@ -89,7 +91,7 @@ class Analysis(object):
 
     # 评论日期分布折线图
     def line_date(self):
-        query_sql = "SELECT date,COUNT(date) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY date".format(self.movie_id)
+        query_sql = "SELECT date,COUNT(date) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY date".format(self.movie_id)
         data_list = self.exc_sql(query_sql)
         attr = []
         value = []
@@ -104,7 +106,7 @@ class Analysis(object):
 
 
     def city_map(self):
-        query_sql = "SELECT cityName,COUNT(cityName) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY cityName".format(self.movie_id)
+        query_sql = "SELECT cityName,COUNT(cityName) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY cityName".format(self.movie_id)
         data_list = self.exc_sql(query_sql)
         attr = []
         value = []
@@ -166,6 +168,7 @@ class Analysis(object):
                 visual_text_color='#fff', symbol_size=15,
                 is_visualmap=True, is_piecewise=True, visual_split_number=10)
         geo.render('myecharts/粉丝位置分布-地理坐标图.html')
+        geo.render('myecharts/粉丝位置分布-地理坐标图.png')
 
 
 
@@ -175,7 +178,7 @@ if __name__ == '__main__':
     # a.gender_pie()
     # # a.city_map()
     # a.line_date()
-    # a.score_bar()
+    a.score_bar()
     # a.gender_bar()
     a.city_map()
 
