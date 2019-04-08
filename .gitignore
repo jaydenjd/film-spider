@@ -9,7 +9,6 @@ __pycache__/
 video.json
 
 # project config/
-settings.py
 settings_celery.py
 settings_kafka.py
 

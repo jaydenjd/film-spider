@@ -6,7 +6,6 @@ import time
 import requests
 import scrapy
 from scrapy import Request
-import sys
 
 from ..items import MaoyanRequestItem
 
