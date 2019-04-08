@@ -67,6 +67,7 @@ coverage.xml
 *.cover
 .hypothesis/
 
+
 # Translations
 *.mo
 *.pot
@@ -126,3 +127,4 @@ tmpenv
 .mypy_cache/
 .DS_Store
 
+*.pyc

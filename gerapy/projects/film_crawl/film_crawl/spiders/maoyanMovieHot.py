@@ -7,18 +7,17 @@ import requests
 import scrapy
 from scrapy import Request
 import sys
-sys.path.insert(0, '..')
 
-from ..items import RequestInfoItem
+from ..items import MaoyanRequestItem
 
 
-class MaoyanHotfilmSpider(scrapy.Spider):
-    name = 'maoyan_hotFilm'
+class MaoyanmoviehotSpider(scrapy.Spider):
+    name = 'maoyanMovieHot'
     allowed_domains = ['maoyan.com']
-    start_urls = ['http://maoyan.com/']
+    # start_urls = ['http://maoyan.com/']
 
     def __init__(self, *args, **kwargs):
-        super(MaoyanHotfilmSpider, self).__init__(*args, **kwargs)
+        super(MaoyanmoviehotSpider, self).__init__(*args, **kwargs)
         self.movie_url = 'http://api.maoyan.com/mmdb/movie/v5/{}.json'
         # 城市默认设为广州
         self.hot_movie = 'http://api.maoyan.com/mmdb/movie/v4/list/hot.json?ci=20'
@@ -36,9 +35,10 @@ class MaoyanHotfilmSpider(scrapy.Spider):
         for movie in movieIds:
             yield Request(self.movie_url.format(str(movie)), callback=self.parse_movie)
 
-    # 电影基本信息解析，并构建影评请求
+        # 电影基本信息解析，并构建影评请求
+
     def parse_movie(self, response):
-        req = RequestInfoItem()
+        req = MaoyanRequestItem()
         # 初始化获得本地时间
         req_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))
         try:
@@ -56,5 +56,4 @@ class MaoyanHotfilmSpider(scrapy.Spider):
                 yield req
         except Exception as e:
             logging.error(e)
-
 

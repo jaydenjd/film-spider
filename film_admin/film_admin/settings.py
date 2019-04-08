@@ -30,7 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'film.apps.FilmConfig',
+    'film',
+    # 'film.apps.FilmConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'film_spider',
+        # 'NAME': 'spider_test',
         'USER': 'root',
         'HOST': 'localhost',
         'PASSWORD': 'root',

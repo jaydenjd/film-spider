@@ -29,17 +29,16 @@
 </script>
 </head>
 <body>
-    <div id="dd5bf18a8c4046a8927edd0a160d8678" style="width:1500px;height:400px;"></div>
+    <div id="c15809c373514c4da20ddad7a4833ac5" style="width:1000px;height:700px;"></div>
     <script type="text/javascript">
 
-var myChart_dd5bf18a8c4046a8927edd0a160d8678 = echarts.init(document.getElementById('dd5bf18a8c4046a8927edd0a160d8678'), 'light', {renderer: 'canvas'});
+var myChart_c15809c373514c4da20ddad7a4833ac5 = echarts.init(document.getElementById('c15809c373514c4da20ddad7a4833ac5'), 'light', {renderer: 'canvas'});
 
-var option_dd5bf18a8c4046a8927edd0a160d8678 = {
+var option_c15809c373514c4da20ddad7a4833ac5 = {
     "title": [
         {
-            "text": "\u997c\u72b6\u56fe",
-            "subtext": "\u8bc4\u5206\u8868",
-            "left": "left",
+            "text": "\u8bc4\u5206\u67f1\u72b6\u56fe",
+            "left": "auto",
             "top": "auto",
             "textStyle": {
                 "fontSize": 18
@@ -69,7 +68,7 @@ var option_dd5bf18a8c4046a8927edd0a160d8678 = {
             }
         }
     },
-    "series_id": 3587486,
+    "series_id": 3599304,
     "tooltip": {
         "trigger": "item",
         "triggerOn": "mousemove|click",
@@ -85,59 +84,46 @@ var option_dd5bf18a8c4046a8927edd0a160d8678 = {
     },
     "series": [
         {
-            "type": "pie",
-            "name": "\u6027\u522b",
+            "type": "bar",
+            "name": "\u6570\u636e\u6765\u6e90\uff1a\u732b\u773c\u7535\u5f71",
             "data": [
-                {
-                    "name": "male",
-                    "value": 858
-                },
-                {
-                    "name": "female",
-                    "value": 401
-                },
-                {
-                    "name": "unknown",
-                    "value": 1152
-                }
+                858,
+                401,
+                1152
             ],
-            "radius": [
-                "30%",
-                "75%"
-            ],
-            "center": [
-                "25%",
-                "50%"
-            ],
+            "barCategoryGap": "20%",
             "label": {
                 "normal": {
                     "show": true,
-                    "position": "outside",
+                    "position": "inside",
                     "textStyle": {
+                        "color": "#0000FF",
                         "fontSize": 12
-                    },
-                    "formatter": "{b}: {d}%"
+                    }
                 },
                 "emphasis": {
                     "show": true,
                     "textStyle": {
                         "fontSize": 12
-                    },
-                    "formatter": "{b}: {d}%"
+                    }
                 }
             },
-            "seriesId": 3587486
+            "markPoint": {
+                "data": []
+            },
+            "markLine": {
+                "data": []
+            },
+            "seriesId": 3599304
         }
     ],
     "legend": [
         {
             "data": [
-                "male",
-                "female",
-                "unknown"
+                "\u6570\u636e\u6765\u6e90\uff1a\u732b\u773c\u7535\u5f71"
             ],
             "selectedMode": "multiple",
-            "show": false,
+            "show": true,
             "left": "center",
             "top": "top",
             "orient": "horizontal",
@@ -147,6 +133,76 @@ var option_dd5bf18a8c4046a8927edd0a160d8678 = {
         }
     ],
     "animation": true,
+    "xAxis": [
+        {
+            "show": true,
+            "nameLocation": "middle",
+            "nameGap": 25,
+            "nameTextStyle": {
+                "fontSize": 14
+            },
+            "axisTick": {
+                "alignWithLabel": false
+            },
+            "inverse": false,
+            "boundaryGap": true,
+            "type": "category",
+            "splitLine": {
+                "show": false
+            },
+            "axisLine": {
+                "lineStyle": {
+                    "width": 1
+                }
+            },
+            "axisLabel": {
+                "interval": "auto",
+                "rotate": 0,
+                "margin": 8,
+                "textStyle": {
+                    "fontSize": 12
+                }
+            },
+            "data": [
+                "male",
+                "female",
+                "unknown"
+            ]
+        }
+    ],
+    "yAxis": [
+        {
+            "show": true,
+            "nameLocation": "middle",
+            "nameGap": 25,
+            "nameTextStyle": {
+                "fontSize": 14
+            },
+            "axisTick": {
+                "alignWithLabel": false
+            },
+            "inverse": false,
+            "boundaryGap": true,
+            "type": "value",
+            "splitLine": {
+                "show": true
+            },
+            "axisLine": {
+                "lineStyle": {
+                    "width": 1
+                }
+            },
+            "axisLabel": {
+                "interval": "auto",
+                "formatter": "{value} ",
+                "rotate": 0,
+                "margin": 8,
+                "textStyle": {
+                    "fontSize": 12
+                }
+            }
+        }
+    ],
     "color": [
         "#c23531",
         "#2f4554",
@@ -175,7 +231,7 @@ var option_dd5bf18a8c4046a8927edd0a160d8678 = {
         "#f6f5ec"
     ]
 };
-myChart_dd5bf18a8c4046a8927edd0a160d8678.setOption(option_dd5bf18a8c4046a8927edd0a160d8678);
+myChart_c15809c373514c4da20ddad7a4833ac5.setOption(option_c15809c373514c4da20ddad7a4833ac5);
 
 </script>
 </body>

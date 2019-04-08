@@ -1,0 +1,22 @@
+<!--<h1>{{ movie.name }}</h1>-->
+
+<!--<ul>-->
+<!--{% for comment in movieInfoModel.commentsModel_set.all %}-->
+    <!--<li>{{ comment.nickName }} &#45;&#45; {{ comment.content }}</li>-->
+<!--{% endfor %}-->
+<!--</ul>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Proudly presented by PycCharts</title>
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script>
+    {% endfor %}
+</head>
+<body>
+  {{ myechart|safe }}
+</body>
+</html>
