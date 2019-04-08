@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import logging
-import time
 import datetime
 import scrapy
 from urllib.parse import quote

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 import logging
-import time
 import uuid
 
 from scrapy import Request, Spider
