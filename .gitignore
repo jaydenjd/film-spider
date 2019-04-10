@@ -133,4 +133,6 @@ tmpenv
 dist
 build
 
+myecharts/
+
 git rm -r --cached file_name/dir
