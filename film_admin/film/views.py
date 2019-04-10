@@ -75,16 +75,21 @@ def exc_sql(sql):
 def result(request, pk):
     template = loader.get_template('film/result.html')
     b = bar(pk)
+    s = score_pie(pk)
     context = dict(
         myechart=b.render_embed(),
+        myechart1=s.render_embed(),
+
         host=REMOTE_HOST,
-        script_list=b.get_js_dependencies()
+        # script_list=b.get_js_dependencies()
+        script_list=s.get_js_dependencies()
+
     )
     return HttpResponse(template.render(context, request))
 
 
 def bar(pk):
-    query_sql = "SELECT score,COUNT(score) as s FROM film_spider.movie_comments WHERE movie_id={} GROUP BY score order by score ".format(pk)
+    query_sql = "SELECT score,COUNT(score) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY score order by score ".format(pk)
     data_list = exc_sql(query_sql)
     x=[i[0] for i in data_list]
     y=[i[1] for i in data_list]
@@ -95,8 +100,8 @@ def bar(pk):
     return bar
 
 
-def score_pie():
-    query_sql = "SELECT score,COUNT(score) as s FROM film_spider.movie_comments WHERE movie_id=248906 GROUP BY score"
+def score_pie(pk):
+    query_sql = "SELECT score,COUNT(score) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY score".format(pk)
     data_list = exc_sql(query_sql)
     attr = []
     value = []
