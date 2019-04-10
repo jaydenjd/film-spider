@@ -2,7 +2,6 @@
 import pymysql
 from pyecharts import Bar, Pie, Map, Style, Geo, Line
 from pyecharts import Bar3D, Page, Style
-from app.charts.constants import RANGE_COLOR, X_TIME, Y_WEEK, WIDTH, HEIGHT
 
 DATABASES = {
     'default': {
