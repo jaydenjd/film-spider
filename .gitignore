@@ -1,8 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 
-*.py[cod]
-*$py.class
 
 # C extensions
 *.so
@@ -134,3 +132,7 @@ tmpenv
 *.egg-info
 dist
 build
+
+myecharts/
+
+git rm -r --cached file_name/dir
