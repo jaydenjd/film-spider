@@ -15,7 +15,7 @@ def exc_sql():
     port = MYSQL_PORT
     db = pymysql.connect(host=host, user=user, password=password, db=database, port=port, charset='utf8mb4')
     cursor = db.cursor()
-    query_sql = "SELECT movie_id FROM film_spider.maoyan_movie_info "
+    query_sql = "SELECT content FROM film_spider.maoyan_movie_comments"
     cursor.execute(query_sql)
     # result = cursor.fetchall()
     result = cursor.fetchall()

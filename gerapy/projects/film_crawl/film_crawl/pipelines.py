@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import re
+
 import pymongo
 import pymysql
 from scrapy.exceptions import DropItem
@@ -39,6 +41,13 @@ class CityPipeline(object):
                 item['cityName'] = item['cityName'] + '市'
         return item
 
+class DoubandurationsPipeline(object):
+    def process_item(self, item, spider):
+        if isinstance(item, DoubanMovieInfoItem):
+            if not '分钟' in item['durations']:
+                pattern = re.compile('\d')
+                item['durations'] = ''.join(re.findall(pattern, item['durations']))+'分钟'
+                return item
 
 class MysqlPipeline(object):
     def __init__(self, host, database, user, password, port):

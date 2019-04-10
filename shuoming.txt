@@ -1,0 +1,2 @@
+1.pyecharts生成图片时需要安装Phantomjs,而生成html不需要
+2.wordcloud需要指定中文字体的路径，否则会中文会显示成方框

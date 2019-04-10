@@ -49,18 +49,15 @@ class DoubanmovieoneSpider(Spider):
             # info['uuid'] = str(uuid.uuid1())
             info['movie_id'] = items['id']  # 猫眼电影Id
             info['name'] = items['title']  # 电影名字
-            # if items['title'] != items['original_title']:
-            #     info['enm'] = items['original_title']
-            # elif items['title'] == items['original_title']:
-            #     if len[items['aka']] == 1:
-            #         info['enm'] = items['aka'][0]
-            #     else:
-            #         info['enm'] = items['aka'][-1]
             info['enm'] = items['original_title']
             info['type'] = ','.join(items['genres'])  # 电影类型,原本数据是个list类型，在此转为str
-            info['region'] = items['countries']  # 电影地区
-            info['lang'] = items['languages']  # 电影语言
-            info['durations'] = items['durations']
+            info['region'] = ','.join(items['countries'])  # 电影地区
+            info['lang'] = ','.join(items['languages'])  # 电影语言
+            info['durations'] = items['durations'][0][:5]
+            if items.get('pubdate'):
+                info['pubdate'] = items.get('pubdate', '')  # 电影上映时间
+            else:
+                info['pubdate'] = items.get('pubdates', '')[0]
             info['pubdate'] = items.get('pubdate', '')  # 电影上映时间
             info['data_from'] = '豆瓣'
             info['score'] = float(items['rating'].get('average'))  # 电影评分'
