@@ -105,7 +105,6 @@ class Analysis(object):
         # line.show_config()
         line.render('myecharts/line_date.html')
 
-    def bar3d(self):
 
     def city_map(self):
         query_sql = "SELECT cityName,COUNT(cityName) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY cityName".format(self.movie_id)

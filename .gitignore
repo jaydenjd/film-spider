@@ -126,4 +126,4 @@ tmpenv
 .mypy_cache/
 .DS_Store
 
-*.pyc
+.pyc
