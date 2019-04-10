@@ -1,12 +1,12 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+
 *.py[cod]
 *$py.class
 
 # C extensions
 *.so
 
-video.json
 
 # project config/
 settings_celery.py
@@ -126,4 +126,11 @@ tmpenv
 .mypy_cache/
 .DS_Store
 
-.pyc
+
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
