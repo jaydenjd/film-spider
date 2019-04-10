@@ -89,7 +89,7 @@ class WordTest(object):
         # font = '/System/Library/Assets/com_apple_MobileAsset_Font5/6bb29eea6a5b99f3100a5e3f862e6457103557de.asset/AssetData/Hannotate.ttc'
         font = '/System/Library/Assets/com_apple_MobileAsset_Font5/4cecce0dd640f147de4d0e4155a97d3cdf47971e.asset/AssetData/Xingkai.ttc'
         # 设置词云参数，参数分别表示：画布宽高、背景颜色、背景图形状、字体、屏蔽词、最大词的字体大小
-        wc = WordCloud(width=1024, height=768, background_color='white', mask=bg_image,font_path=font,
+        wc = WordCloud(width=1024, height=768, background_color='white', mask=bg_image, font_path=font,
                        stopwords=stopwords, max_font_size=400, random_state=50)
         # 将分词后数据传入云图
         wc.generate_from_text(words)

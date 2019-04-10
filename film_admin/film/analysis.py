@@ -1,6 +1,8 @@
 # from ..film_admin.settings import DATABASES
 import pymysql
 from pyecharts import Bar, Pie, Map, Style, Geo, Line
+from pyecharts import Bar3D, Page, Style
+from app.charts.constants import RANGE_COLOR, X_TIME, Y_WEEK, WIDTH, HEIGHT
 
 DATABASES = {
     'default': {
@@ -104,6 +106,7 @@ class Analysis(object):
         # line.show_config()
         line.render('myecharts/line_date.html')
 
+    def bar3d(self):
 
     def city_map(self):
         query_sql = "SELECT cityName,COUNT(cityName) as s FROM film_spider.maoyan_movie_comments WHERE movie_id={} GROUP BY cityName".format(self.movie_id)
