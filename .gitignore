@@ -126,4 +126,10 @@ tmpenv
 .mypy_cache/
 .DS_Store
 
-.pyc
+# Python:
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
