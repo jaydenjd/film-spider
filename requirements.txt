@@ -34,7 +34,7 @@ jedi==0.13.3
 Jinja2==2.10
 jupyter-echarts-pypkg==0.1.2
 lml==0.0.2
-lxml==4.3.2
+lxml==4.6.3
 macropy3==1.1.0b2
 MarkupSafe==1.1.1
 mysqlclient==1.4.2.post1
