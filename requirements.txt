@@ -23,7 +23,7 @@ echarts-countries-pypkg==0.1.6
 echarts-united-kingdom-pypkg==0.0.1
 fake-useragent==0.1.11
 future==0.17.1
-gerapy==0.8.5
+gerapy==0.9.8
 get==2018.11.19
 hyperlink==18.0.0
 idna==2.8
